@@ -2,8 +2,9 @@
 using Claim.Interfaces;
 using Claim.Models;
 using Claim.Repository;
-using System.Reflection.Metadata.Ecma335;
-
+using Claim.ViewModel;
+using Newtonsoft;
+using Newtonsoft.Json.Linq;
 namespace Claim.Services
 {
     public class ClaimService : IClaimServices
@@ -13,14 +14,16 @@ namespace Claim.Services
         readonly IPolicyRepository _policyRepository;
         readonly ICustomerRepository _customerRepository;
         readonly IClaimantRepository _claimantRepository;
+        readonly IGenericRepository _genericRepository;
 
-        public ClaimService(ClaimsDBContext dbContext, ClaimsRepository claimsRepository, PolicyRepository policyRepository, CustomerRepository customerRepository, ClaimantRepository claimantRepository)
+        public ClaimService(ClaimsDBContext dbContext, ClaimsRepository claimsRepository, PolicyRepository policyRepository, CustomerRepository customerRepository, ClaimantRepository claimantRepository, GenericRepository genericRepository)
         {
             _dbContext = dbContext;
             _claimsRepository = claimsRepository;
             _policyRepository = policyRepository;
             _customerRepository = customerRepository;
             _claimantRepository = claimantRepository;
+            _genericRepository = genericRepository;
         }
 
         public List<Claims> GetClaims(int claimId = 0)
@@ -67,6 +70,18 @@ namespace Claim.Services
             return claimants;
 
         }
+        public Claimant GetMatchedData(Claimant claimant)
+        {
+            var claimants = _claimantRepository.CreateClaimant(claimant);
+            return claimants;
 
+        }
+        public List<GenericVM> ReceivedValue(List<GenericVM> json)
+        {
+
+            var generic =  _genericRepository.GetGeneric(json);
+
+            return generic;
+        }
     }
 }

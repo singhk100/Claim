@@ -1,7 +1,10 @@
 ﻿using Claim.Interfaces;
 using Claim.Models;
+using Claim.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 
 namespace Claim.Controllers
 {
@@ -46,7 +49,13 @@ namespace Claim.Controllers
             var result = _services.GetCustomer(claimantId);
             return Ok(result);
         }
-
+        [HttpGet]
+        //[Route("get/matched")]
+        //public ActionResult GetGeneric(string data)
+        //{
+        //    var result = _services.GetMatchedData(data);
+        //    return Ok(result);
+        //}
         //POST METHODS
 
         [HttpPost]
@@ -76,6 +85,20 @@ namespace Claim.Controllers
         {
             var result = _services.CreateClaimant(claimant);
             return Ok(result);
+        }
+        [HttpPost]
+        public async Task<IActionResult> ReceiveJson(List<GenericVM> genericVMList)
+        {
+            try
+            {
+
+                List<GenericVM> responseList = _services.ReceivedValue(genericVMList);
+                return Ok(responseList);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+            }
         }
     }
 }

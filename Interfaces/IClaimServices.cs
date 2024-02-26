@@ -1,4 +1,6 @@
 ﻿using Claim.Models;
+using Claim.ViewModel;
+using Newtonsoft.Json.Linq;
 namespace Claim.Interfaces
 {
     public interface IClaimServices
@@ -12,6 +14,8 @@ namespace Claim.Interfaces
         public Customer CreateCustomer(Customer customer);
         public List<Claimant> GetClaimant(int claimantId);
         public Claimant CreateClaimant(Claimant claimant);
+        public List<GenericVM> ReceivedValue(List<GenericVM> json);
+
 
     }
 }

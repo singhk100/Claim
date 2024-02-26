@@ -17,6 +17,7 @@ namespace Claim.ClaimDBContext
         public virtual DbSet<Policy>? policy { get; set; }
         public virtual DbSet<Customer>? customer { get; set; }
         public virtual DbSet<Claimant>? claimant { get; set; }
+        public virtual DbSet<Generic>? generics { get; set; }
 
 
 

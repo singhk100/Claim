@@ -3,7 +3,7 @@
     public class Claims
     {
         public int ID { get; set; }
-        public int CustomerID { get; set;}
+        public int CustomerId { get; set;}
         public int PolicyId { get; set;}
         public string? MobileNunber { get; set;}
         public string? ClaimDetails { get; set;}

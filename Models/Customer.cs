@@ -7,6 +7,8 @@
         public string? CustomerDetails { get; set;}
         public string? PolicyHolderName { get; set; }
         public string? MobileNumber { get; set;}
+        public string? policyName { get; set; }
+        public int SumAssured { get; set;}
 
     }
 }

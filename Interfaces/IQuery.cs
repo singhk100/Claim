@@ -21,6 +21,9 @@ namespace Claim.Interfaces
 
         public string CreateClaimant(Customer customer);
 
+       // public string MatchedCustomer();
+
+
 
     }
 }

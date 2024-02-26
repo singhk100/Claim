@@ -1,5 +1,6 @@
 ﻿using Claim.Interfaces;
 using Claim.Models;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Claim
 {
@@ -17,7 +18,7 @@ namespace Claim
         }
         public string CreateClaim(Claims claims)
         {
-            string result = $@"Insert into Claims values({claims.CustomerID},{claims.PolicyId},{claims.MobileNunber},
+            string result = $@"Insert into Claims values({claims.CustomerId},{claims.PolicyId},{claims.MobileNunber},
                                 {claims.ClaimDetails},{claims.SumAssured},{claims.IsSubmitted},{claims.IsSelfProcess})";
             return result;
 
@@ -71,5 +72,12 @@ namespace Claim
             return result;
 
         }
+        //public string MatchedCustomer()
+        //{
+
+        //    //string result = $@"select cu.id,cu.MobileNumber,cu.PolicyId,cu.CustomerDetails,p.PolicyAmount from Customer cu join policy p
+        //    //                on cu.PolicyID=p.ID";
+        //    return result;
+        //}
     }
 }
